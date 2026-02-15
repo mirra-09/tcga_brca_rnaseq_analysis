@@ -1,23 +1,14 @@
-library(SummarizedExperiment)
 library(dplyr)
 
-# Load queried object (change filename if needed)
-load("data/tcga_brca_raw.RData")  # replace with your saved object name
+# Load data
+counts <- read.csv("data/raw_counts_matrix.csv", row.names = 1)
+metadata <- read.csv("data/sample_metadata.csv")
 
-# Assume object name is 'se'
-# Extract raw counts
-counts <- assay(se)
-
-# Extract metadata
-metadata <- colData(se)
-
-# Filter low-count genes
+# Filter low-expression genes
 keep <- rowSums(counts >= 10) >= 10
 filtered_counts <- counts[keep, ]
 
 # Save filtered data
-if (!dir.exists("data")) dir.create("data")
-
 save(filtered_counts, metadata,
      file = "data/tcga_brca_filtered.RData")
 
