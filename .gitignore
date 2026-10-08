@@ -1,0 +1,20 @@
+# R / RStudio
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# TCGA/GDC raw downloads
+GDCdata/
+*.maf
+*.maf.gz
+
+# Large serialized R objects
+*.RData
+*.rds
+
+# macOS
+.DS_Store
+
+# Local temporary files
+*_new/
